@@ -1,6 +1,6 @@
 package org.example.it355dz08.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.Objects;
 
@@ -62,18 +62,5 @@ public class ComicEntity {
 
     public void setPublishYear(Integer publishYear) {
         this.publishYear = publishYear;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ComicEntity that = (ComicEntity) o;
-        return id == that.id && Objects.equals(comicName, that.comicName) && Objects.equals(issue, that.issue) && Objects.equals(publishMonth, that.publishMonth) && Objects.equals(publishYear, that.publishYear);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, comicName, issue, publishMonth, publishYear);
     }
 }

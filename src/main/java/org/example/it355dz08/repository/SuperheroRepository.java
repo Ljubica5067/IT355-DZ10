@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface SuperheroRepository extends JpaRepository<SuperheroEntity,Long> {
+public interface SuperheroRepository extends JpaRepository<SuperheroEntity,Integer> {
 
     Optional<SuperheroEntity> findSuperheroById(int id);
 
@@ -29,4 +29,5 @@ public interface SuperheroRepository extends JpaRepository<SuperheroEntity,Long>
     List<SuperheroEntity> findByAlignment_Alignment(String alignment);
 
     List<SuperheroEntity> findBySuperpower_PowerName(String superpowerName);
+
 }

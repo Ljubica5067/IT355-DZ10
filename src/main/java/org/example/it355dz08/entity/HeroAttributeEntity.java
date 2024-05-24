@@ -1,70 +1,55 @@
 package org.example.it355dz08.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.Objects;
 
 @Entity
 @Table(name = "hero_attribute", schema = "superhero", catalog = "")
 public class HeroAttributeEntity {
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Basic
-    @Column(name = "hero_id")
-    private Integer heroId;
-    @Basic
-    @Column(name = "attribute_id")
-    private Integer attributeId;
-    @Basic
-    @Column(name = "attribute_value")
-    private Integer attributeValue;
-    @ManyToOne
-    @JoinColumn(name = "attribute_id", referencedColumnName = "id")
-    private AttributeEntity attributeByAttributeId;
+    @Id
+    private int id;
 
-    public Integer getHeroId() {
-        return heroId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "hero_id", nullable = false)
+    private SuperheroEntity hero;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "attribute_id", nullable = false)
+    private AttributeEntity attribute;
+
+    public HeroAttributeEntity() {
     }
 
-    public void setHeroId(Integer heroId) {
-        this.heroId = heroId;
+    public HeroAttributeEntity(int id, SuperheroEntity hero, AttributeEntity attribute) {
+        this.id = id;
+        this.hero = hero;
+        this.attribute = attribute;
     }
 
-    public Integer getAttributeId() {
-        return attributeId;
+    public int getId() {
+        return id;
     }
 
-    public void setAttributeId(Integer attributeId) {
-        this.attributeId = attributeId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Integer getAttributeValue() {
-        return attributeValue;
+    public SuperheroEntity getHero() {
+        return hero;
     }
 
-    public void setAttributeValue(Integer attributeValue) {
-        this.attributeValue = attributeValue;
+    public void setHero(SuperheroEntity hero) {
+        this.hero = hero;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        HeroAttributeEntity that = (HeroAttributeEntity) o;
-        return Objects.equals(heroId, that.heroId) && Objects.equals(attributeId, that.attributeId) && Objects.equals(attributeValue, that.attributeValue);
+    public AttributeEntity getAttribute() {
+        return attribute;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(heroId, attributeId, attributeValue);
+    public void setAttribute(AttributeEntity attribute) {
+        this.attribute = attribute;
     }
 
-    public AttributeEntity getAttributeByAttributeId() {
-        return attributeByAttributeId;
-    }
-
-    public void setAttributeByAttributeId(AttributeEntity attributeByAttributeId) {
-        this.attributeByAttributeId = attributeByAttributeId;
-    }
 }

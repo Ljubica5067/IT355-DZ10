@@ -1,6 +1,6 @@
 package org.example.it355dz08.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.Objects;
 
@@ -11,9 +11,18 @@ public class PublisherEntity {
     @Id
     @Column(name = "id")
     private int id;
+
     @Basic
     @Column(name = "publisher_name")
     private String publisherName;
+
+    public PublisherEntity() {
+    }
+
+    public PublisherEntity(int id, String publisher) {
+        this.id = id;
+        this.publisherName = publisher;
+    }
 
     public int getId() {
         return id;
@@ -23,24 +32,11 @@ public class PublisherEntity {
         this.id = id;
     }
 
-    public String getPublisherName() {
+    public String getPublisher() {
         return publisherName;
     }
 
-    public void setPublisherName(String publisherName) {
-        this.publisherName = publisherName;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PublisherEntity that = (PublisherEntity) o;
-        return id == that.id && Objects.equals(publisherName, that.publisherName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, publisherName);
+    public void setPublisher(String publisher) {
+        this.publisherName = publisher;
     }
 }

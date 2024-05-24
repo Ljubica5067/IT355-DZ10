@@ -1,7 +1,8 @@
 package org.example.it355dz08.entity;
 
-import jakarta.persistence.*;
 
+
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -11,9 +12,18 @@ public class GenderEntity {
     @Id
     @Column(name = "id")
     private int id;
+
     @Basic
     @Column(name = "gender")
     private String gender;
+
+    public GenderEntity() {
+    }
+
+    public GenderEntity(int id, String gender) {
+        this.id = id;
+        this.gender = gender;
+    }
 
     public int getId() {
         return id;
@@ -29,18 +39,5 @@ public class GenderEntity {
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        GenderEntity that = (GenderEntity) o;
-        return id == that.id && Objects.equals(gender, that.gender);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, gender);
     }
 }

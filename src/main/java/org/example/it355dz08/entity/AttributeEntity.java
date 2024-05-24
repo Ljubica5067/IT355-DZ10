@@ -1,6 +1,6 @@
 package org.example.it355dz08.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.Objects;
 
@@ -11,9 +11,18 @@ public class AttributeEntity {
     @Id
     @Column(name = "id")
     private int id;
+
     @Basic
     @Column(name = "attribute_name")
     private String attributeName;
+
+    public AttributeEntity() {
+    }
+
+    public AttributeEntity(int id, String attributeName) {
+        this.id = id;
+        this.attributeName = attributeName;
+    }
 
     public int getId() {
         return id;
@@ -29,18 +38,5 @@ public class AttributeEntity {
 
     public void setAttributeName(String attributeName) {
         this.attributeName = attributeName;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AttributeEntity that = (AttributeEntity) o;
-        return id == that.id && Objects.equals(attributeName, that.attributeName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, attributeName);
     }
 }

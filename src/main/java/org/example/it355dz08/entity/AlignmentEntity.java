@@ -1,6 +1,6 @@
 package org.example.it355dz08.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.Objects;
 
@@ -11,9 +11,18 @@ public class        AlignmentEntity {
     @Id
     @Column(name = "id")
     private int id;
+
     @Basic
     @Column(name = "alignment")
     private String alignment;
+
+    public AlignmentEntity() {
+    }
+
+    public AlignmentEntity(int id, String alignment) {
+        this.id = id;
+        this.alignment = alignment;
+    }
 
     public int getId() {
         return id;
@@ -29,18 +38,5 @@ public class        AlignmentEntity {
 
     public void setAlignment(String alignment) {
         this.alignment = alignment;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AlignmentEntity that = (AlignmentEntity) o;
-        return id == that.id && Objects.equals(alignment, that.alignment);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, alignment);
     }
 }

@@ -1,7 +1,6 @@
 package org.example.it355dz08.entity;
 
-import jakarta.persistence.*;
-
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -12,11 +11,18 @@ public class SuperpowerEntity {
     @Id
     @Column(name = "id")
     private int id;
+
     @Basic
     @Column(name = "power_name")
     private String powerName;
-    @OneToMany(mappedBy = "superpowerByPowerId")
-    private Collection<HeroPowerEntity> heroPowersById;
+
+    public SuperpowerEntity() {
+    }
+
+    public SuperpowerEntity(int id, String powerName) {
+        this.id = id;
+        this.powerName = powerName;
+    }
 
     public int getId() {
         return id;
@@ -32,26 +38,5 @@ public class SuperpowerEntity {
 
     public void setPowerName(String powerName) {
         this.powerName = powerName;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        SuperpowerEntity that = (SuperpowerEntity) o;
-        return id == that.id && Objects.equals(powerName, that.powerName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, powerName);
-    }
-
-    public Collection<HeroPowerEntity> getHeroPowersById() {
-        return heroPowersById;
-    }
-
-    public void setHeroPowersById(Collection<HeroPowerEntity> heroPowersById) {
-        this.heroPowersById = heroPowersById;
     }
 }

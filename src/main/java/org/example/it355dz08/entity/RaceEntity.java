@@ -1,7 +1,6 @@
 package org.example.it355dz08.entity;
 
-import jakarta.persistence.*;
-
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -11,9 +10,18 @@ public class RaceEntity {
     @Id
     @Column(name = "id")
     private int id;
+
     @Basic
     @Column(name = "race")
     private String race;
+
+    public RaceEntity() {
+    }
+
+    public RaceEntity(int id, String race) {
+        this.id = id;
+        this.race = race;
+    }
 
     public int getId() {
         return id;
@@ -29,18 +37,5 @@ public class RaceEntity {
 
     public void setRace(String race) {
         this.race = race;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RaceEntity that = (RaceEntity) o;
-        return id == that.id && Objects.equals(race, that.race);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, race);
     }
 }

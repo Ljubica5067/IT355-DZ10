@@ -1,21 +1,20 @@
 package org.example.it355dz08.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.Objects;
 
 @Entity
 @Table(name = "hero_power", schema = "superhero", catalog = "")
 public class HeroPowerEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     @Basic
     @Column(name = "hero_id")
     private Integer heroId;
     @Basic
     @Column(name = "power_id")
     private Integer powerId;
+    @Id
+    private Long id;
 
     public Integer getHeroId() {
         return heroId;
@@ -44,5 +43,13 @@ public class HeroPowerEntity {
     @Override
     public int hashCode() {
         return Objects.hash(heroId, powerId);
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
